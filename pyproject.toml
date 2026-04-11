@@ -1,0 +1,20 @@
+[project]
+name = "data-freezer"
+version = "0.1.0"
+description = "CLI utility to backup and restore data from aws glacier"
+authors = [
+    { name = "Ashish Kumar Shah" }
+]
+license = "Apache-2.0"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "typer (>=0.24.1,<0.25.0)",
+]
+[tool.poetry]
+packages = [{ include = "data_freezer", from = "src" }]
+[project.scripts]
+data-freezer = "data_freezer.cli:main"
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
