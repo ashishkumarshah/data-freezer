@@ -25,10 +25,11 @@ def command(
         ] = None,
 ):
     print("Setting up data freezer...")
-    if source_dir is None:
-        source_dir = os.getcwd()
-    if work_dir is None:
-        work_dir = os.getcwd()
+    source_dir = source_dir or os.getcwd()
+    work_dir = work_dir or os.getcwd()
+
+    assert source_dir is not None
+    assert work_dir is not None
 
     setup_workspace(work_dir)
 
