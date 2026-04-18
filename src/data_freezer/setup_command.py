@@ -31,8 +31,7 @@ def command(
     assert source_dir is not None
     assert work_dir is not None
 
-    setup_workspace(source_dir)
-
+    setup_workspace(work_dir)
 
 
 if __name__ == "__main__":

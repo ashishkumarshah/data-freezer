@@ -209,3 +209,5 @@ __marimo__/
 .idea/
 
 .data_freeze/
+
+.DS_Store
