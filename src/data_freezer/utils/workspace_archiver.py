@@ -7,14 +7,14 @@ from .archive_table_db import ArchiveTableDb
 from .archive_table_db import ArchiveStatus
 from .file_table_db import FileTableDb
 from .db_util import DbUtil
-from .workspace_utils import FOLDER_NAME
+from .workspace_paths import resolve_work_dir
 
 
 class WorkspaceArchiver:
     def __init__(self, source_dir: str, workspace_dir: str):
         self.source_dir = source_dir
         self.workspace_dir = workspace_dir
-        self.work_dir = os.path.join(self.workspace_dir, FOLDER_NAME)
+        self.work_dir = resolve_work_dir(self.workspace_dir)
         self.db_util = DbUtil(self.work_dir, False)
         self.files_db = FileTableDb(self.db_util)
         self.archives_db = ArchiveTableDb(self.db_util)

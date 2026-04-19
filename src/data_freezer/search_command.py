@@ -1,8 +1,8 @@
-import os
 import sys
 
 import typer
 from typing import Annotated, Optional
+from .utils.workspace_utils import run_search_command
 
 
 def command(
@@ -16,10 +16,7 @@ def command(
             )
         ] = None
 ):
-    if work_dir is None:
-        work_dir = os.getcwd()
-    print(f'Workspace: {work_dir}...')
-    print(f'Searching metadata for files matching the pattern {file_name_pattern}...')
+    run_search_command(file_name_pattern=file_name_pattern, work_dir=work_dir)
 
 
 if __name__ == "__main__":

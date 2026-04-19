@@ -1,11 +1,9 @@
-import os
 import sys
 
 import typer
 from typing import Annotated, Optional
 
-from .utils.workspace_archiver import WorkspaceArchiver
-from .utils.deepfreeze import DeepFreezeUtil
+from .utils.workspace_utils import run_archive_command
 
 
 def command(
@@ -26,19 +24,7 @@ def command(
             )
         ] = None,
 ):
-    if source_dir is None:
-        source_dir = os.getcwd()
-    if work_dir is None:
-        work_dir = os.getcwd()
-    assert source_dir is not None
-    assert work_dir is not None
-    print(f'Workspace: {work_dir}...')
-    print(f'Archiving files in {source_dir}...')
-    archiver = WorkspaceArchiver(source_dir, work_dir)
-    archive_path = archiver.archive_workspace()
-    if archive_path is not None:
-        print(f'Workspace archived at : {archive_path}')
-        DeepFreezeUtil(archive_path).upload()
+    run_archive_command(source_dir=source_dir, work_dir=work_dir)
 
 
 if __name__ == "__main__":

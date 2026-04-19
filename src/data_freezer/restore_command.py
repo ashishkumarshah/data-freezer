@@ -1,12 +1,14 @@
 import typer
 import sys
-from typing import Annotated, Optional
+from typing import Annotated
+
+from .utils.workspace_utils import run_restore_command
 
 
 def command(
         archive_id: Annotated[str, typer.Option(help="Archive ID")],
 ):
-    print(f'Initiating Restore of Archive {archive_id}...')
+    run_restore_command(archive_id)
 
 
 if __name__ == "__main__":

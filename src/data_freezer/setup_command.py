@@ -1,9 +1,8 @@
-import os
 import sys
 
 import typer
 from typing import Annotated, Optional
-from data_freezer.utils.workspace_utils import setup_workspace
+from data_freezer.utils.workspace_utils import run_setup_command
 
 
 def command(
@@ -24,14 +23,8 @@ def command(
             )
         ] = None,
 ):
-    print("Setting up data freezer...")
-    source_dir = source_dir or os.getcwd()
-    work_dir = work_dir or os.getcwd()
-
-    assert source_dir is not None
-    assert work_dir is not None
-
-    setup_workspace(work_dir)
+    print('Setting up data freezer...')
+    run_setup_command(source_dir=source_dir, work_dir=work_dir)
 
 
 if __name__ == "__main__":

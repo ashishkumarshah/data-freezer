@@ -1,8 +1,7 @@
 from pathlib import Path
 import shutil
 
-from data_freezer.utils.workspace_archiver import WorkspaceArchiver
-from data_freezer.utils.workspace_utils import setup_workspace
+from data_freezer.utils.workspace_utils import setup_workspace, archive_workspace
 
 
 def test_archive_workspace_archives_everything_new_workspace(capsys, tmp_path):
@@ -12,9 +11,7 @@ def test_archive_workspace_archives_everything_new_workspace(capsys, tmp_path):
 
     setup_workspace(str(work_dir))
 
-    archiver = WorkspaceArchiver(str(source_dir), str(work_dir))
-
-    archiver.archive_workspace()
+    archive_workspace(str(source_dir), str(work_dir))
     output = capsys.readouterr().out
 
     expected_files = sorted(
@@ -35,9 +32,7 @@ def test_archive_workspace_archives_new_files_existing_workspace(capsys, tmp_pat
     work_dir = tmp_path / "existing_workspace"
     shutil.copytree(existing_workspace_fixture, work_dir)
 
-    archiver = WorkspaceArchiver(str(source_dir), str(work_dir))
-
-    archiver.archive_workspace()
+    archive_workspace(str(source_dir), str(work_dir))
     output = capsys.readouterr().out
 
     expected_new_files = sorted(

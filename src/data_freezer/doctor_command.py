@@ -1,8 +1,8 @@
-import os
 import sys
 
 import typer
 from typing import Annotated, Optional
+from .utils.workspace_utils import run_doctor_command
 
 
 def command(
@@ -23,12 +23,7 @@ def command(
             )
         ] = None,
 ):
-    if source_dir is None:
-        source_dir = os.getcwd()
-    if work_dir is None:
-        work_dir = os.getcwd()
-    print(f'Workspace: {work_dir}...')
-    print(f'Rescuing files from {source_dir}...')
+    run_doctor_command(source_dir=source_dir, work_dir=work_dir)
 
 
 if __name__ == "__main__":
